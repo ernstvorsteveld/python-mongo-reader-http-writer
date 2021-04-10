@@ -1,22 +1,15 @@
 import unittest
 from mongo_connection import MongoConnection
-import os
+from file_properties import FileProperties
 
 class TestMongoConnection(unittest.TestCase):
 
     def test_should_get_collection_using_default_values(self):
-        self.mongo = MongoConnection()
+        self.mongo = MongoConnection(FileProperties(None))
         collection = self.mongo.getCollection()
-        self.assertEqual(collection.full_name, "default-database-name.default-collection")
-
-    def test_should_get_collection_with_env_variable(self):
-        os.environ["MONGO_CONFIG_FILE"] = "mongo-connection-test.json"
-        self.mongo = MongoConnection()
-        collection = self.mongo.getCollection()
-        self.assertEqual(collection.full_name, "test_database.test_collection")
-        del os.environ["MONGO_CONFIG_FILE"]
+        self.assertEqual(collection.full_name, "default_database_name.default_collection")
 
     def test_should_get_collection_from_parameter(self):
-        self.mongo = MongoConnection("mongo-connection-test.json")
+        self.mongo = MongoConnection(FileProperties("mongo-connection-test.json"))
         collection = self.mongo.getCollection()
         self.assertEqual(collection.full_name, "test_database.test_collection")

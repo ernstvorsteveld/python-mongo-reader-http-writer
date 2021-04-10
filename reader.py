@@ -1,12 +1,13 @@
 import argparse
 from mongo.mongo_connection import MongoConnection
+from mongo.file_properties import FileProperties
 
 class Reader:
     def __init__(self, start=0, end=None, size=0, configFile=None):
         self.start = start
         self.end = end
         self.size = size
-        self.configFile = configFile
+        self.configFile = FileProperties(configFile)
 
     def run(self):
         self.mongo = MongoConnection(self.configFile)

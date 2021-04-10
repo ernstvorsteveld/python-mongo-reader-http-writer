@@ -1,41 +1,26 @@
 import pymongo
 import json
-import os
 import bson.json_util as bj
+import sys
+import os
+from file_properties import FileProperties
 class MongoConnection:
 
-    def __init__(self, filename=None):
-        result = None
-        if filename != None:
-            result = self.getClientAndDb(filename)
-        else:
-            if os.path.exists(os.environ['MONGO_CONFIG_FILE']):
-                result = self.getClientAndDb(os.environ['MONGO_CONFIG_FILE'])
+    def __init__(self, config=None):
+        result = self.getClientAndDb(config)
         
-        self.url = "mongodb://root:root@127.0.0.1:27017" if result == None else result[0]
-        self.database = "default-database-name" if result == None else result[1]
-        self.collection = "default-collection" if result == None else result[2]
+        self.url = "mongodb://root:root@127.0.0.1:27017" if result[0] == None else result[0]
+        self.database = "default_database_name" if result[1] == None else result[1]
+        self.collection = "default_collection" if result[2] == None else result[2]
 
         self.client = pymongo.MongoClient(self.url)
         self.db = self.client[self.database]
 
-    def getClientAndDb(self, filename):
-        fileToUse = self.getFilename(filename)
-        if fileToUse == None:
-            return None, None
+    def getClientAndDb(self, config):
+        if config == None:
+            return None, None, None
 
-        with open(fileToUse) as config_file:
-            config = json.load(config_file)
-            dbName = config["database"]
-            dbUrl = config["connect_url"]
-            collection = config["collection"]
-            return dbUrl, dbName, collection
-
-    def getFilename(self, filename):        
-        fileToUse = None
-        if os.path.exists(filename):
-            fileToUse = filename
-        return fileToUse
+        return config.getProperty("connect_url"), config.getProperty("database"), config.getProperty("collection")
 
     def getCollection(self):
         return self.db.get_collection(self.collection)
