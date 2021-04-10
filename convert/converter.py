@@ -1,7 +1,6 @@
 import sys
 import os.path
 import json
-from bson.json_util import dumps
 
 class Converter:
 
@@ -23,10 +22,10 @@ class Converter:
             return ""
 
     def write(self, itemAsJson):
-        print(json.dumps(itemAsJson))
+        print(itemAsJson)
 
     def toJson(self, line):
-        return dumps(line)
+        return json.loads(line)
 
 if __name__ == "__main__":
     Converter(sys.stdin).run()
