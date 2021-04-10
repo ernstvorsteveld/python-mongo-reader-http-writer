@@ -1,4 +1,0 @@
-{
-    "database": "test-database",
-    "connect_url": "mongodb://root:root@127.0.0.1:27017"
-}

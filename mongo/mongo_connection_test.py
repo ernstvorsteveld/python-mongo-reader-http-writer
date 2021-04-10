@@ -6,17 +6,17 @@ class TestMongoConnection(unittest.TestCase):
 
     def test_should_get_collection_using_default_values(self):
         self.mongo = MongoConnection()
-        collection = self.mongo.getCollection('default-collection')
+        collection = self.mongo.getCollection()
         self.assertEqual(collection.full_name, "default-database-name.default-collection")
 
     def test_should_get_collection_with_env_variable(self):
         os.environ["MONGO_CONFIG_FILE"] = "mongo-connection-test.json"
         self.mongo = MongoConnection()
-        collection = self.mongo.getCollection('test-collection')
-        self.assertEqual(collection.full_name, "test-database.test-collection")
+        collection = self.mongo.getCollection()
+        self.assertEqual(collection.full_name, "test_database.test_collection")
         del os.environ["MONGO_CONFIG_FILE"]
 
     def test_should_get_collection_from_parameter(self):
         self.mongo = MongoConnection("mongo-connection-test.json")
-        collection = self.mongo.getCollection('test-collection')
-        self.assertEqual(collection.full_name, "test-database.test-collection")
+        collection = self.mongo.getCollection()
+        self.assertEqual(collection.full_name, "test_database.test_collection")
