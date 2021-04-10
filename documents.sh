@@ -1,0 +1,13 @@
+db.test_collection.insert({ x: 1 } );
+db.test_collection.insert({ x: 2 } );
+db.test_collection.insert({ x: 3 } );
+db.test_collection.insert({ x: 4 } );
+db.test_collection.insert({ x: 5 } );
+db.test_collection.insert({ x: 6 } );
+db.test_collection.insert({ x: 7 } );
+db.test_collection.insert({ x: 8 } );
+db.test_collection.insert({ x: 9 } );
+db.test_collection.insert({ x: 10 } );
+db.test_collection.insert({ x: 11 } );
+db.test_collection.insert({ x: 12 } );
+db.test_collection.insert({ x: 13 } );
