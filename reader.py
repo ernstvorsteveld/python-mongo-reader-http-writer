@@ -1,7 +1,5 @@
 import argparse
 from mongo.mongo_connection import MongoConnection
-from bson.json_util import dumps
-
 
 class Reader:
     def __init__(self, start=0, end=None, size=0, configFile=None):
@@ -11,9 +9,9 @@ class Reader:
         self.configFile = configFile
 
     def run(self):
-        mongo = MongoConnection(self.configFile)
-        collection = mongo.getCollection()
-        self.end = mongo.collectionSize(collection, self.end)
+        self.mongo = MongoConnection(self.configFile)
+        collection = self.mongo.getCollection()
+        self.end = self.mongo.collectionSize(collection, self.end)
         self.read(collection)
 
     def read(self, collection):
@@ -22,7 +20,7 @@ class Reader:
         while skip < self.end:
             documents = collection.find({}).skip(skip).limit(limit)
             for document in documents:
-                print(dumps(document))
+                print(self.mongo.dump(document))
             
             skip = skip + limit
 

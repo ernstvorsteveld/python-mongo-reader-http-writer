@@ -1,8 +1,7 @@
-from pymongo import MongoClient
+import pymongo
 import json
-import os.path
-from os import path
 import os
+import bson.json_util as bj
 class MongoConnection:
 
     def __init__(self, filename=None):
@@ -10,14 +9,14 @@ class MongoConnection:
         if filename != None:
             result = self.getClientAndDb(filename)
         else:
-            if path.exists(os.environ['MONGO_CONFIG_FILE']):
+            if os.path.exists(os.environ['MONGO_CONFIG_FILE']):
                 result = self.getClientAndDb(os.environ['MONGO_CONFIG_FILE'])
         
         self.url = "mongodb://root:root@127.0.0.1:27017" if result == None else result[0]
         self.database = "default-database-name" if result == None else result[1]
         self.collection = "default-collection" if result == None else result[2]
 
-        self.client = MongoClient(self.url)
+        self.client = pymongo.MongoClient(self.url)
         self.db = self.client[self.database]
 
     def getClientAndDb(self, filename):
@@ -34,7 +33,7 @@ class MongoConnection:
 
     def getFilename(self, filename):        
         fileToUse = None
-        if path.exists(filename):
+        if os.path.exists(filename):
             fileToUse = filename
         return fileToUse
 
@@ -46,4 +45,7 @@ class MongoConnection:
             return collection.count_documents({})
         else:
             return end
+
+    def dump(self, document):
+        return bj.dumps(document)
 
