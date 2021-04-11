@@ -7,7 +7,6 @@ class Sender:
     def __init__(self, inputStream=None):
         self.inputStream = inputStream
 
-
     with open("../config.json") as config_file:
         config = json.load(config_file)
 

@@ -3,7 +3,8 @@ import json
 import bson.json_util as bj
 import sys
 import os
-from mongo.file_properties import FileProperties
+from util import FileProperties
+
 class MongoConnection:
 
     def __init__(self, config=None):

@@ -1,5 +1,5 @@
-from mongo.mongo_connection import MongoConnection
-from mongo.file_properties import FileProperties
+from mongo import MongoConnection
+from util import FileProperties
 
 class Reader:
     def __init__(self, start=0, end=None, size=0, configFile=None):

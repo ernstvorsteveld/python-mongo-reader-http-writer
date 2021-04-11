@@ -1,4 +1,4 @@
-import argparse
+import argparse, os
 from reader import Reader
 
 if __name__ == "__main__":
@@ -13,5 +13,7 @@ if __name__ == "__main__":
     parser.add_argument('--config', action='store', type=str,
                     help='The configuration file to use.')
     args = parser.parse_args()
-    reader = Reader(args.start, args.end, args.size, args.config)
+    filename = os.path.dirname(os.path.realpath(__file__)) + args.config
+    print("filename", filename)
+    reader = Reader(args.start, args.end, args.size, filename)
     reader.run()

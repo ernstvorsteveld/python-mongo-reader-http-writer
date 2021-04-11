@@ -1,6 +1,7 @@
 import unittest
-from mongo.mongo_connection import MongoConnection
-from mongo.file_properties import FileProperties
+import os
+from mongo import MongoConnection
+from util import FileProperties
 
 class TestMongoConnection(unittest.TestCase):
 
@@ -10,6 +11,6 @@ class TestMongoConnection(unittest.TestCase):
         self.assertEqual(collection.full_name, "default_database_name.default_collection")
 
     def test_should_get_collection_from_parameter(self):
-        self.mongo = MongoConnection(FileProperties("mongo-connection-test.json"))
+        self.mongo = MongoConnection(FileProperties(os.path.dirname(os.path.realpath(__file__)) + "/mongo-connection-test.json"))
         collection = self.mongo.getCollection()
         self.assertEqual(collection.full_name, "test_database.test_collection")
