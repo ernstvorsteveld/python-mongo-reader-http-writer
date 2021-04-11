@@ -28,3 +28,7 @@ python -m unittest -v tests.mongo.test_mongo_connection
 ----
 python -m unittest discover -v
 ----
+
+== Remarks
+
+This project is largely over-engineered. This is done on purpose, to understand the module/package rules of python.
