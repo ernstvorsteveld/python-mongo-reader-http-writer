@@ -1,0 +1,16 @@
+= Python reader-converter-writer
+:toc:
+:toclevels: 4
+:sectnums:
+:author: Ernst Vorsteveld
+:title: {doctitle}
+:title-page:
+:revnumber: 0.1
+:revdate: 11-04-2021
+
+== Simple reader-converter-writer
+
+[source,bash]
+----
+python run-reader.py --config mongo/mongo-connection-test.json
+----
