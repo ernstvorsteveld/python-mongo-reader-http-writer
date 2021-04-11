@@ -10,7 +10,21 @@
 
 == Simple reader-converter-writer
 
+.Run the reader
 [source,bash]
 ----
-python run-reader.py --config mongo/mongo-connection-test.json
+python run-reader.py --config mongo-connection-test.json
+----
+
+.Run a test
+[source,bash]
+----
+python -m unittest -v tests.util.test_file_properties
+python -m unittest -v tests.mongo.test_mongo_connection
+----
+
+.Run all tests
+[source,bash]
+----
+python -m unittest discover -v
 ----
