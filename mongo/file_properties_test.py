@@ -1,6 +1,6 @@
 import unittest
 import os
-from file_properties import FileProperties
+from mongo.file_properties import FileProperties
 
 class TestMongoConnection(unittest.TestCase):
 

@@ -1,5 +1,5 @@
 import unittest
-from converter import Converter
+from mongoreader.convert.converter import Converter
 import json
 
 class TestConverter(unittest.TestCase):
