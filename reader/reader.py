@@ -2,6 +2,7 @@ from mongo import MongoConnection
 from util import FileProperties
 
 class Reader:
+
     def __init__(self, start=0, end=None, size=0, configFile=None):
         self.start = start
         self.end = end
