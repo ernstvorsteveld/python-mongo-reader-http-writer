@@ -13,7 +13,7 @@
 .Run the reader
 [source,bash]
 ----
-python run-reader.py --config mongo-connection-test.json
+python run-reader.py --config ./mongo-connection-test.json
 ----
 
 .Run a test
